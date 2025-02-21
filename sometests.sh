@@ -44,3 +44,39 @@ function getExecutionTime(){
 }
 
 getExecutionTime
+
+function getTime(){
+    echo $(date +"%I:%M:%S %p")
+}
+#function for getting time in seconds
+function getTimeInSeconds(){
+    echo $(date +"%s")
+}
+# does not work in macos but will work on linux systems to get time in bash
+function getTimeInNano(){
+    echo $(date +%N)
+}
+
+function getExecutionTime(){
+    if [ -z "$1" ];then
+        echo "No command provided as argument"
+        return
+    fi
+    command="$1"
+    start_time=$(date +%s)
+    eval $command
+    end_time=$(date +%s)
+    execution_time=$((end_time - start_time))
+    echo -e "${command} took ${execution_time} seconds to run"
+}
+
+getTime
+getTimeInSeconds
+#getTimeInNano
+getExecutionTime "find ./ -type d -exec basename {} \;"
+
+
+
+
+
+
