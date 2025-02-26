@@ -80,3 +80,4 @@ ls -t | grep -E "\.jpg$|\.png$" | head -4
 
 #same but proper time stamps added ( only time , date and file name using awk )
 ls -lt | grep -E "\.jpg$|\.png$" | head -4| awk '{print $6 " " $7 " " $8 " " $9}'
+
