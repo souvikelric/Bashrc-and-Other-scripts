@@ -62,8 +62,8 @@ gfp(){
 
     git fetch && git status | grep -q "behind"
     if [ $? -eq 0 ]; then
-        echo "${redCol}Pull required${reset}"
-        echo "${greenCol}$(git status | grep "behind" | awk '{print $4 " " $7 " " $8}' | awk -F "," '{print $1}')${reset}"
+        echo -e "${redCol}Pull required${reset}"
+        echo -e "${greenCol}$(git status | grep "behind" | awk '{print $4 " " $7 " " $8}' | awk -F "," '{print $1}')${reset}"
         status=$(git status --porcelain | wc -l)
         if [[ ! $status -eq "0" ]];then
             git stash
@@ -71,12 +71,12 @@ gfp(){
         git pull
         if [[ ! $status -eq "0" ]];then
             git stash apply
-            echo "${greenCol}Pull Complete. Stash applied. You can now run the command gacp 'message' to push changes to remote${reset}"
+            echo -e "${greenCol}Pull Complete. Stash applied. You can now run the command gacp 'message' to push changes to remote${reset}"
         else
-            echo "${greenCol}Pull Complete${reset}"
+            echo -e "${greenCol}Pull Complete${reset}"
         fi
     else
-        echo "${magentaCol}Pull not required${reset}"
+        echo -e "${magentaCol}Pull not required${reset}"
     fi
 }
 
