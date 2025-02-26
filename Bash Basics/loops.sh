@@ -60,3 +60,14 @@ done
 # 8 is even
 # 9 is odd
 # 10 is even
+
+# Simple script to get the number of hidden files in a folder
+# putting it in a function for easy calling and passing parameters if needed
+function getNumHidden(){
+    shown_files=$(ls ./ | wc -l)
+    all_files=$(ls -a ./ | wc -l)
+    echo $shown_files
+    echo $all_files
+    diff=$((all_files - shown_files))
+    echo "Number of Hidden Files : $diff"
+}
